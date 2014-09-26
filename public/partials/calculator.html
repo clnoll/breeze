@@ -5,34 +5,39 @@
       <label for="insurance">Estimate your MONTHLY INSURANCE costs:</label>
       <input type="text" id="insurance" readonly style="border:0; color:#f6931f; font-weight:bold;">
       <div id="insurance-slider">
-        <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.insurance.value" translate="currencyFormatting"></slider>
+        <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.insurance" translate="currencyFormatting"></slider>
+        <div>${{values.insurance}}</div>
       </div>
         <!-- Lease -->
         <label for="lease">Estimate your MONTHLY LEASE costs:</label>
         <input type="text" id="lease" readonly style="border:0; color:#f6931f; font-weight:bold;">
         <div id="lease-slider">
-          <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.lease.value" translate="currencyFormatting"></slider>
+          <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.lease" translate="currencyFormatting"></slider>
+          <div>${{values.lease}}</div>
         </div>
 
         <!-- Hours-drive -->
         <label for="hours-drive">Estimate the number of HOURS you plan to DRIVE per week:</label>
         <input type="text" id="hours-drive" readonly style="border:0; color:#f6931f; font-weight:bold;">
         <div id="hours-drive-slider">
-          <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursDrive.value" translate="currencyFormatting"></slider>
+          <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursDrive" translate="currencyFormatting"></slider>
+          <div>{{values.hoursDrive}} hours/week</div>
         </div>
 
         <!-- Mileage/gas -->
         <label for="mileage">Estimated weekly gas cost (based on estimated hours driven):</label>
         <input type="text" id="mileage" readonly style="border:0; color:#f6931f; font-weight:bold;">
         <div id="mileage-slider">
-          <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.mileage.value" translate="currencyFormatting"></slider>
+          <slider floor="0" ceiling="270" values="135" step="50" precision="2" ng-model="values.mileage" translate="currencyFormatting"></slider>
+          <div>${{values.mileage}} gas/week</div>
         </div>
 
         <!-- Hours-task -->
         <label for="hours-task">Enter the number of HOURS you plan to spend on TASKS per week:</label>
         <input type="text" id="hours-task" readonly style="border:0; color:#f6931f; font-weight:bold;">
         <div id="hours-task-slider">
-          <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursTask.value" translate="currencyFormatting"></slider>
+          <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursTask" translate="currencyFormatting"></slider>
+          <div>{{values.hoursTask}} hours/week</div>
         </div>
 
         <!-- Shift -->
@@ -73,6 +78,6 @@
       <div>
           <input type="submit" value="Enter" class="button">
       </div>
-      <div update-vals>{{estimate}}</div>
+      <div>{{estimate}}</div>
   <!-- </div> -->
 </form>
