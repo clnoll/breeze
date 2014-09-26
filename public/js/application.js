@@ -39,7 +39,7 @@
            }
        };
 
-       // Calculate the weekly cost of gas based on estimated hours of driving per week.  Assumes average of 30 mph speed, 40 mpg for hybrids, $4.50/gallon gas
+      // Calculate the weekly cost of gas based on estimated hours of driving per week.  Assumes average of 30 mph speed, 40 mpg for hybrids, $4.50/gallon gas
        var mileageFxn = function() {
            return (($scope.values.hoursDrive * 30) / 40) * 4.5
        };
@@ -100,16 +100,16 @@
            $scope.values.agency = agencyFxn();
 
            // Calculate total costs, extrapolated to one year
-           var costsAnnual = ($scope.values.insurance + $scope.values.lease) * 12 + $scope.values.mileage * 52
+           var costsAnnual = ($scope.values.insurance * 12) + ($scope.values.lease * 12) + ($scope.values.mileage * 52)
 
            // Calculate hourly earnings, extrapolated to one year
-           var hoursAnnual = ($scope.values.hoursDrive * $scope.values.agency + $scope.values.hoursTask * $scope.values.agency) * 52
+           var hoursAnnual = (($scope.values.hoursDrive * $scope.values.agency) + ($scope.values.hoursTask * $scope.values.agency) ) * 52
 
            // Weight estimate with other options
-           var multipliers = hoursAnnual * $scope.values.shift * $scope.values.vehicle * $scope.values.region
+           // var multipliers = hoursAnnual * $scope.values.shift * $scope.values.vehicle * $scope.values.region
 
            // Calculate the rate estimate
-           var rate = ((multipliers - costsAnnual)/52)/40
+           var rate = ((hoursAnnual - costsAnnual)/(52 * 40))
            console.log(rate)
            return Math.floor(rate)
        };
