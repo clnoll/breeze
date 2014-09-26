@@ -1,5 +1,5 @@
    // create the module
-  angular.module('Breeze', ['ngRoute', 'ngResource'])
+  angular.module('Breeze', ['ngRoute', 'ngResource', 'ui.slider'])
 
   .config(function ($routeProvider) {
       $routeProvider
@@ -23,13 +23,8 @@
 
       $scope.estimate = 0
 
-      $scope.slider = {
-        options: {
-          start: function (event, ui) { $log.info('Slider start'); },
-          stop: function (event, ui) { $log.info('Slider stop'); }
-        }
-      }
-
+      $scope.slider = function(value) { return value.toString() + " $"; };
+$scope.currencyFormatting = function(value) { return value.toString() + " $" }
       // create a message to display in our view
       // $scope.login = function() {
       //   $scope.login_result = $http.post('/').success(function(data){
