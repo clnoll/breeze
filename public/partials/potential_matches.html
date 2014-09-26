@@ -1,0 +1,36 @@
+
+<a ng-href='/#/users/{{id}}/matches'>view matches</a>
+<a ng-href='/#/users/{{id}}/profile'>go to profile</a>
+<div class="container">
+  <div class="row">
+  <div class="container">
+    <div class="[ col-sm-6 col-md-offset-2 col-md-4 ]">
+      <div id="matches" class="[ info-card ]" ng-repeat="user in users | limitTo : 9" tile>
+          <img style="width: 100%" ng-src="{{user.image}}" />
+          <div class="[ info-card-details ] animate">
+            <div class="[ info-card-header ]">
+              <h1> {{user.username}} </h1>
+              <h3>{{user.description}}</h3>
+              <!-- <h3>{{user.image}}</h3> -->
+
+            </div>
+            <div class="[ info-card-detail ]">
+
+              <p>{{user.age}}</p>
+              <div class="social">
+                <button type="button" ng-click="remove(id, user.id, false)" class="btn btn-default btn-lg">
+                  <span class="glyphicon glyphicon-remove-circle">Dislike</span>
+                </button>
+
+                <button type="button" ng-click="remove(id, user.id, true)" class="btn btn-default btn-lg">
+                  <span class="glyphicon glyphicon-ok-circle">Like</span>
+                </button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
