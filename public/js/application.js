@@ -14,17 +14,48 @@
    // create the controller and inject Angular's $scope
   .controller('calcController', function ($scope, $http) {
       $scope.values = {
-        insurance: 0,
-        lease: 0,
-        hoursDrive: 0,
+        insurance: 125,
+        lease: 125,
+        hoursDrive: 30,
         mileage: 0,
-        hoursTask: 0
-      }
+        hoursTask: 30,
+        shift: 0,
+        vehicle: 0,
+        agency: 0,
+        region: 0
+      };
 
-      $scope.estimate = 0
+      $scope.selectOptions = {
+        shifts: ['Weeknight', 'Weekend', 'Weekday'],
+        vehicles: ['Standard', 'Mid-range', 'Premium'],
+        agencies: ['Uber', 'Lyft', 'SpoonRocket', 'TaskRabbit'],
+        regions: ['San Francisco', 'East Bay', 'South Bay', 'Peninsula'],
+        selected: {
+          shift: '',
+          vehicle: '',
+          agency: '',
+          region: ''
+        }
+      };
 
-      $scope.slider = function(value) { return value.toString() + " $"; };
-$scope.currencyFormatting = function(value) { return value.toString() + " $" }
+      var addVals = function() {
+        // Calculate the cost of gas based on estimated hours per week.  Assumes average of 40 mpg for hybrids, $4.50/gallon gas, and extrapolated to one year
+        var gasAnnual = (($scope.values.mileage * $scope.values.hoursDrive) / 40) * 4.5 * 52
+
+        // Calculate total costs, extrapolated to one year
+        var costsAnnual = ($scope.values.insurance + $scope.values.lease) * 12 + gasAnnual
+
+        // Calculate hourly earnings, extrapolated to one year
+        var hours = $scope.values.hoursDrive * $scope.values.agency + $scope.values.hoursTask * $scope.values.agency
+        var multipliers = hours * $scope.values.shift * $scope.values.vehicle * $scope.values.region
+        return multipliers - costsAnnual
+      };
+
+      $scope.estimate = addVals();
+
+      // $scope.slider = function(value) { return value.toString() + " $"; };
+      $scope.currencyFormatting = function(value) { return value.toString() + " $"; }
+
       // create a message to display in our view
       // $scope.login = function() {
       //   $scope.login_result = $http.post('/').success(function(data){
@@ -32,28 +63,6 @@ $scope.currencyFormatting = function(value) { return value.toString() + " $" }
       //   });
   })
 
-  .controller('loginController', function ($scope, $location, $timeout, $http) {
-      // create a message to display in our view
-      $scope.user = {
-          username: '',
-          password: ''
-      };
-
-      $scope.login = function () {
-          $scope.login_result = $http.post('/login', {
-              user: $scope.user
-          }, {
-              headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded'
-              }
-          }).success(
-              function (data) {
-                  $timeout(function () {
-                      $location.path('/users/' + data.user_id + '/feed');
-                  })
-              })
-      }
-  })
 
   .controller('feedController', function ($scope, $http, $routeParams) {
       var id = $routeParams['id']; // find id based off the parameter
@@ -81,10 +90,6 @@ $scope.currencyFormatting = function(value) { return value.toString() + " $" }
       }
 
 
-
-  })
-
-  .controller('messageSentController', function(){
 
   })
 

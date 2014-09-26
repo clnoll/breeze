@@ -1,3 +1,4 @@
+// See https://github.com/PopSugar/angular-slider
 (function() {
   var MODULE_NAME, SLIDER_TAG, angularize, gap, halfWidth, hide, inputEvents, module, offset, offsetLeft, pixelize, qualifiedDirectiveDefinition, roundStep, show, sliderDirective, width;
 
