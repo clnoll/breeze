@@ -55,25 +55,21 @@
   </div>
 
       <!-- Shift -->
-    <div class="container-fluid">
+    <div class="container=">
       <label for="shift">Which SHIFT will you typically work?</label>
-        <div class="container">
-          <label ng-repeat="shift in selectOptions.shifts" for="{{shift}}">{{shift}}
-            <div class="radio">
-              <input type="radio" ng-model="selectOptions.selected.shift" ng-value="shift" name="shift">
-            </div>
+        <div class="radio inline" ng-repeat="shift in selectOptions.shifts">
+            <input type="radio" ng-model="selectOptions.selected.shift" ng-value="shift" name="shift">
+          <label class="radio inline" for="{{shift}}">{{shift}}
             </div>
         </label>
     </div>
 
       <!-- Vehicle -->
-    <div class="container-fluid">
+    <div class="container">
       <label for="vehicle">Which VEHICLE would you like to lease?</label>
-      <div class="container">
-        <label ng-repeat="vehicle in selectOptions.vehicles" for="{{vehicle}}">{{vehicle}}
-          <div class="radio">
-            <input type="radio" ng-model="selectOptions.selected.vehicle" ng-value="vehicle" name="vehicle">
-          </div>
+      <div class="radio inline" ng-repeat="vehicle in selectOptions.vehicles">
+          <input type="radio" ng-model="selectOptions.selected.vehicle" ng-value="vehicle" name="vehicle">
+        <label class="radio inline" for="{{vehicle}}">{{vehicle}}
           </div>
         </label>
     </div>
@@ -81,25 +77,21 @@
       <!-- Agency -->
     <div class="container">
       <label for="agency">Which AGENCY do you plan to work with?</label>
-      <div class="container">
-        <label ng-repeat="agency in selectOptions.agencies" for="{{agency}}">{{agency}}
-          <div class="radio">
-          <input type="radio" ng-model="selectOptions.selected.agency" ng-value="agency" name="agency">
-          </div>
+      <div class="radio inline" ng-repeat="agency in selectOptions.agencies">
+         <input type="radio" ng-model="selectOptions.selected.agency" ng-value="agency" name="agency">
+        <label class="radio inline" for="{{agency}}">{{agency}}
+          </label>
         </div>
-      </label>
     </div>
 
       <!-- Region -->
     <div class="container">
       <label for="region">Which REGION do you plan to work in?</label>
-      <div class="container">
-        <label ng-repeat="region in selectOptions.regions" for="{{region}}">{{region}}
-          <div class="radio">
-          <input type="radio" ng-model="selectOptions.selected.region" ng-value="region" name="region">
-          </div>
-        </div>
-      </label>
+      <div class="radio inline" ng-repeat="region in selectOptions.regions" >
+          <input type="radio" ng-value="region" name="region">
+          <label class="radio inline" ng-model="selectOptions.selected.region" for="{{region}}">{{region}}
+        </label>
+      </div>
     </div>
   </form>
 </div>
