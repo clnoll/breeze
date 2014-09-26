@@ -46,11 +46,16 @@
     </div>
 
     <h1><strong>Rate Calculator</strong></h1>
-        <form method="post" action="/estimate">
+        <form ng-controller="calcController" method="post" action="/estimate">
             <!-- Insurance -->
             <label for="insurance">Enter your MONTHLY INSURANCE costs:</label>
             <input type="text" id="insurance" readonly style="border:0; color:#f6931f; font-weight:bold;">
             <div id="insurance-slider"></div>
+
+<div ui-slider="slider.options"
+     min="0"
+     max="50"
+     ng-model="values.insurance"></div>
 
             <!-- Lease -->
             <label for="lease">Enter your MONTHLY LEASE costs:</label>

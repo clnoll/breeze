@@ -1,90 +1,35 @@
-   // create the module and name it scotchApp
+   // create the module
   angular.module('Breeze', ['ngRoute', 'ngResource'])
 
-   // .config(function($routeProvider) {
-   //   $routeProvider
-   //     .when('/', {
-   //       controller: 'Ctrl',
-   //       templateUrl: 'partials/blah.html'
-   //     })
-   // })
-   // .controller('Ctrl', function() {
-
-   // })
-   // app.factory('OAuth', ['$http', function ($http) {
-
-   //   var _SessionID = '';
-
-   //   return {
-   //       login: function () {
-   //           //Do login ans store sessionID in var _SessionID
-   //       },
-
-   //       logout: function () {
-   //           //Do logout
-   //       },
-
-   //       isLoggedIn: function () {
-   //           if(_SessionID) {
-   //               return true;
-   //           }
-   //           //redirect to login page if false
-   //       }
-   //   };
-
-   // }])
-
-   // configure our routes
   .config(function ($routeProvider) {
       $routeProvider
 
-      // route for the login page
+      // route for the calculator page
           .when('/', {
-          templateUrl: 'partials/blah.html',
-          controller: 'mainController'
-      })
-
-      // route for the user page
-      .when('/login', {
-          templateUrl: 'partials/login.html',
-          controller: 'loginController'
-      })
-
-      //     // route for the profile page
-      .when('/users/:id/feed', {
-          templateUrl: 'partials/potential_matches.html',
-          controller: 'feedController',
-          controllerAs: 'feed'
-      })
-
-      .when('/users/:id/matches', {
-          templateUrl: 'partials/matches.html',
-          controller: 'matchesController'
-      })
-
-      .when('/users/:id/profile', {
-          templateUrl: 'partials/profile.html',
-          controller: 'profileController'
-      })
-
-      .when('/users/:id/message/:idto', {
-          templateUrl: 'partials/message.html',
-          controller: 'messageController'
-      })
-
-      .when('/signup', {
-          templateUrl: 'partials/signup.html',
-          controller: 'signUpController'
-      })
-
-      .when('/users/:id/message/:idto/success', {
-          templateUrl: 'partials/message_sent.html',
-          controller: 'messageSentController'
+          templateUrl: 'partials/calculator.html',
+          controller: 'calcController'
       });
   })
 
    // create the controller and inject Angular's $scope
-  .controller('mainController', function ($scope, $http) {
+  .controller('calcController', function ($scope, $http) {
+      $scope.values = {
+        insurance: 0,
+        lease: 0,
+        hoursDrive: 0,
+        mileage: 0,
+        hoursTask: 0
+      }
+
+      $scope.estimate = 0
+
+      $scope.slider = {
+        options: {
+          start: function (event, ui) { $log.info('Slider start'); },
+          stop: function (event, ui) { $log.info('Slider stop'); }
+        }
+      }
+
       // create a message to display in our view
       // $scope.login = function() {
       //   $scope.login_result = $http.post('/').success(function(data){
