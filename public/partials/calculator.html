@@ -1,59 +1,55 @@
-<div class="container">
+<div class="container" id="calc">
     <span class="header">
-    <h1><strong>What's Your Rate?</strong></h1>
+    <h2><strong>What's Your Rate?</strong></h2>
     <h3 ng-controller="calcController" ng-model="estimate" class="floating-menu">You could earn {{'$' + estimate + ' per hour!'}}</h3>
   </span>
+  <hr>
     <form ng-controller="calcController" method="post" action="/estimate">
         <!-- Insurance -->
         <div class="container">
             <label for="insurance">Estimate your MONTHLY INSURANCE costs:</label>
             <div class="vals">${{values.insurance}}</div>
-            <input type="text" id="insurance" readonly style="border:0; color:#f6931f; font-weight:bold;">
             <div id="insurance-slider">
-                <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.insurance" translate="currencyFormatting"></slider>
+                <slider floor="0" ceiling="250" values="125" step="25" precision="2" ng-model="values.insurance" translate="currencyFormatting"></slider>
             </div>
         </div>
-
+        <hr>
         <!-- Lease -->
         <div class="container">
             <label for="lease">Estimate your MONTHLY LEASE costs:</label>
             <div>${{values.lease}}</div>
-            <input type="text" id="lease" readonly style="border:0; color:#f6931f; font-weight:bold;">
             <div id="lease-slider">
-                <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.lease" translate="currencyFormatting"></slider>
+                <slider floor="0" ceiling="250" values="125" step="25" precision="2" ng-model="values.lease" translate="currencyFormatting"></slider>
             </div>
         </div>
-
+        <hr>
         <!-- Hours-drive -->
         <div class="container">
             <label for="hours-drive">Estimate the number of HOURS you plan to DRIVE per week:</label>
             <div>{{values.hoursDrive}} hours/week</div>
-            <input type="text" id="hours-drive" readonly style="border:0; color:#f6931f; font-weight:bold;">
             <div id="hours-drive-slider">
                 <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursDrive"></slider>
             </div>
         </div>
-
+        <hr>
         <!-- Mileage/gas -->
         <div class="container">
             <label for="mileage">Estimated weekly GAS cost (based on estimated drive time):</label>
             <div>${{values.mileage}} gas/week</div>
-            <input type="text" id="mileage" readonly style="border:0; color:#f6931f; font-weight:bold;">
             <div id="mileage-slider">
-                <slider floor="0" ceiling="270" values="135" step="50" precision="2" ng-model="values.mileage" translate="currencyFormatting"></slider>
+                <slider floor="0" ceiling="270" values="135" step="25" precision="2" ng-model="values.mileage" translate="currencyFormatting"></slider>
             </div>
         </div>
-
+        <hr>
         <!-- Hours-task -->
         <div class="container">
             <label for="hours-task">Enter the number of HOURS you plan to spend on TASKS per week:</label>
             <div>{{values.hoursTask}} hours/week</div>
-            <input type="text" id="hours-task" readonly style="border:0; color:#f6931f; font-weight:bold;">
             <div id="hours-task-slider">
                 <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursTask"></slider>
             </div>
         </div>
-
+        <hr>
         <!-- Shift -->
         <div class="container=">
             <label for="shift">Which SHIFT will you typically work?</label>
@@ -63,7 +59,7 @@
                 </label>
             </div>
         </div>
-
+        <hr>
         <!-- Vehicle -->
         <div class="container">
             <label for="vehicle">Which VEHICLE would you like to lease?</label>
@@ -73,7 +69,7 @@
                 </label>
             </div>
         </div>
-
+        <hr>
         <!-- Agency -->
         <div class="container">
             <label for="agency">Which AGENCY do you plan to work with?</label>
@@ -83,7 +79,7 @@
                 </label>
             </div>
         </div>
-
+        <hr>
         <!-- Region -->
         <div class="container">
             <label for="region">Which REGION do you plan to work in?</label>
