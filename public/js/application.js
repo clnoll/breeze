@@ -14,11 +14,14 @@
    // create the controller and inject Angular's $scope
   .controller('calcController', function ($scope, $http) {
       $scope.values = {
-        insurance: 125,
-        lease: 125,
-        hoursDrive: 30,
-        mileage: 0,
-        hoursTask: 30,
+        // Default values for insurance, lease, and estimated hours/week
+        insurance: {value: 125},
+        lease: {value: 125},
+        hoursDrive: {value: 30},
+        hoursTask: {value: 30},
+        // Calculate the weekly cost of gas based on estimated hours of driving per week.  Assumes average of 30 mph speed, 40 mpg for hybrids, $4.50/gallon gas
+        mileage: {value: 0},
+        // mileage: function(hoursDrive) { ((hoursDrive * 30) / 40 ) * 4.5 },
         shift: 0,
         vehicle: 0,
         agency: 0,
@@ -38,16 +41,16 @@
         }
       };
 
+      // Calculate the miles/week based on estimated hours per week, assuming 30 mph average speed
       var mileageFxn = function() {
-        return 30
-      };
+        $scope.values.hoursDrive * 30
+      }
 
       var addVals = function() {
-        // Calculate the cost of gas based on estimated hours per week.  Assumes average of 40 mpg for hybrids, $4.50/gallon gas, and extrapolated to one year
-        var gasAnnual = (($scope.values.mileage * $scope.values.hoursDrive) / 40) * 4.5 * 52
+
 
         // Calculate total costs, extrapolated to one year
-        var costsAnnual = ($scope.values.insurance + $scope.values.lease) * 12 + gasAnnual
+        var costsAnnual = ($scope.values.insurance + $scope.values.lease) * 12 + $scope.values.mileage * 52
 
         // Calculate hourly earnings, extrapolated to one year
         var hoursAnnual = ($scope.values.hoursDrive * $scope.values.agency + $scope.values.hoursTask * $scope.values.agency) * 52
@@ -60,8 +63,15 @@
       };
 
       // Assign estimate to the scope
-      $scope.estimate = addVals();
+      // $scope.estimate = addVals();
+      $scope.estimate = $scope.values.insurance.value + $scope.values.lease.value
 
       // Formatting for scale bar
       $scope.currencyFormatting = function(value) { return value.toString() + " $"; }
-});
+  })
+
+  .directive("updateVals", function() {
+    return {
+      $scope: false
+    }
+  });
