@@ -14,18 +14,16 @@
     // create the controller and inject Angular's $scope
    .controller('calcController', function($scope, $http) {
        $scope.values = {
-           // Default values for insurance, lease, and estimated hours/week
+           // Default values
            insurance: 125,
            lease: 125,
            hoursDrive: 30,
            hoursTask: 30,
-           // Calculate the weekly cost of gas based on estimated hours of driving per week.  Assumes average of 30 mph speed, 40 mpg for hybrids, $4.50/gallon gas
            mileage: 135,
-           // mileage: function(hoursDrive) { ((hoursDrive * 30) / 40 ) * 4.5 },
            shift: 1,
            vehicle: 1,
            agency: 40,
-           region: 1.5
+           region: 1.5,
        };
 
        $scope.selectOptions = {
@@ -41,9 +39,9 @@
            }
        };
 
-       // Calculate the miles/week based on estimated hours per week, assuming 30 mph average speed
+       // Calculate the weekly cost of gas based on estimated hours of driving per week.  Assumes average of 30 mph speed, 40 mpg for hybrids, $4.50/gallon gas
        var mileageFxn = function() {
-           (($scope.values.hoursDrive * 30) / 40) * 4.5
+           return (($scope.values.hoursDrive * 30) / 40) * 4.5
        };
 
        // Set relative values of shifts
@@ -95,6 +93,12 @@
        };
 
        var addVals = function() {
+           // Set variables for radio button values
+           $scope.values.shift = shiftFxn();
+           $scope.values.vehicle = vehicleFxn();
+           $scope.values.region = regionFxn();
+           $scope.values.agency = agencyFxn();
+
            // Calculate total costs, extrapolated to one year
            var costsAnnual = ($scope.values.insurance + $scope.values.lease) * 12 + $scope.values.mileage * 52
 
@@ -105,14 +109,19 @@
            var multipliers = hoursAnnual * $scope.values.shift * $scope.values.vehicle * $scope.values.region
 
            // Calculate the rate estimate
-           return multipliers - costsAnnual
+           var rate = ((multipliers - costsAnnual)/52)/40
+           console.log(rate)
+           return Math.floor(rate)
        };
 
-       // Assign estimate to the scope
-       $scope.estimate = addVals();
-       $scope.$watch("values", function(newVal, oldVal) {
-           $scope.estimate = addVals();
+       // Assign estimate to the scope by watching changes to the $scope.values object
+       $scope.$watchCollection("values", function(newVal, oldVal, scope) {
+           scope.values.estimate = addVals();
        })
+      // $scope.changeVal = function() {
+      //  // $scope.estimate = addVals();
+      //   console.log('hi')
+      // }
 
        // Formatting for scale bar
        $scope.currencyFormatting = function(value) {

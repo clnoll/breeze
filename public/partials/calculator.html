@@ -1,52 +1,53 @@
-<div class="container" id="calc">
+<div ng-controller="calcController" class="container" id="calc">
     <span class="header">
     <h2><strong>What's Your Rate?</strong></h2>
-    <h3 ng-controller="calcController" ng-model="estimate" class="floating-menu">You could earn {{'$' + estimate + ' per hour!'}}</h3>
+    <h3  ng-model="$estimate" class="floating-menu">You could earn ${{values.estimate}} per hour!</h3>
   </span>
   <hr>
-    <form ng-controller="calcController" method="post" action="/estimate">
+    <form method="post" action="/estimate">
         <!-- Insurance -->
         <div class="container">
             <label for="insurance">Estimate your MONTHLY INSURANCE costs:</label>
+            <input type="text" id="insurance" readonly style="border:0; color:#f6931f; font-weight:bold;">
             <div class="vals">${{values.insurance}}</div>
             <div id="insurance-slider">
-                <slider floor="0" ceiling="250" values="125" step="25" precision="2" ng-model="values.insurance" translate="currencyFormatting"></slider>
+                <slider floor="0" ceiling="250" value="125" step="25" ng-model="values.insurance" translate="currencyFormatting"></slider>
             </div>
         </div>
         <hr>
         <!-- Lease -->
         <div class="container">
             <label for="lease">Estimate your MONTHLY LEASE costs:</label>
-            <div>${{values.lease}}</div>
+            <div class="vals">${{values.lease}}</div>
             <div id="lease-slider">
-                <slider floor="0" ceiling="250" values="125" step="25" precision="2" ng-model="values.lease" translate="currencyFormatting"></slider>
+                <slider floor="0" ceiling="250" value="125" step="25" ng-model="values.lease" translate="currencyFormatting"></slider>
             </div>
         </div>
         <hr>
         <!-- Hours-drive -->
         <div class="container">
             <label for="hours-drive">Estimate the number of HOURS you plan to DRIVE per week:</label>
-            <div>{{values.hoursDrive}} hours/week</div>
+            <div class="vals">{{values.hoursDrive}} hours/week</div>
             <div id="hours-drive-slider">
-                <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursDrive"></slider>
+                <slider floor="0" ceiling="60" ng-value="30" step="10" ng-model="values.hoursDrive"></slider>
             </div>
         </div>
         <hr>
         <!-- Mileage/gas -->
         <div class="container">
             <label for="mileage">Estimated weekly GAS cost (based on estimated drive time):</label>
-            <div>${{values.mileage}} gas/week</div>
+            <div class="vals">${{values.mileage}} gas/week</div>
             <div id="mileage-slider">
-                <slider floor="0" ceiling="270" values="135" step="25" precision="2" ng-model="values.mileage" translate="currencyFormatting"></slider>
+                <slider floor="0" ceiling="270" ng-value="135" step="25" ng-model="values.mileage" translate="currencyFormatting"></slider>
             </div>
         </div>
         <hr>
         <!-- Hours-task -->
         <div class="container">
             <label for="hours-task">Enter the number of HOURS you plan to spend on TASKS per week:</label>
-            <div>{{values.hoursTask}} hours/week</div>
+            <div class="vals">{{values.hoursTask}} hours/week</div>
             <div id="hours-task-slider">
-                <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursTask"></slider>
+                <slider floor="0" ceiling="60" ng-value="30" step="10" ng-model="values.hoursTask"></slider>
             </div>
         </div>
         <hr>
