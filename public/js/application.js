@@ -110,6 +110,9 @@
 
       // Assign estimate to the scope
       $scope.estimate = addVals();
+      $scope.$watch("values", function(newVal, oldVal) {
+        $scope.estimate = addVals();
+      })
 
       // Formatting for scale bar
       $scope.currencyFormatting = function(value) { return value.toString() + " $"; }

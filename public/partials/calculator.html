@@ -1,10 +1,13 @@
-<span class="header"><h1><strong>What's Your Rate?</strong></h1></span>
+<div class="container">
+        <span class="header">
+    <h1><strong>What's Your Rate?</strong></h1>
+    <h3 ng-controller="calcController" ng-model="estimate" class="floating-menu">You could earn {{'$' + estimate + ' per hour!'}}</h3>
+  </span>
   <form ng-controller="calcController" method="post" action="/estimate">
-    <!-- <div update-vals> -->
     <!-- Insurance -->
     <div class="container">
       <label for="insurance">Estimate your MONTHLY INSURANCE costs:</label>
-      <div>${{values.insurance}}</div>
+      <div class="vals">${{values.insurance}}</div>
       <input type="text" id="insurance" readonly style="border:0; color:#f6931f; font-weight:bold;">
       <div id="insurance-slider">
         <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.insurance" translate="currencyFormatting"></slider>
@@ -33,7 +36,7 @@
 
       <!-- Mileage/gas -->
     <div class="container">
-      <label for="mileage">Estimated weekly gas cost (based on estimated hours driven):</label>
+      <label for="mileage">Estimated weekly GAS cost (based on estimated drive time):</label>
       <div>${{values.mileage}} gas/week</div>
       <input type="text" id="mileage" readonly style="border:0; color:#f6931f; font-weight:bold;">
       <div id="mileage-slider">
@@ -54,50 +57,49 @@
       <!-- Shift -->
     <div class="container-fluid">
       <label for="shift">Which SHIFT will you typically work?</label>
-      <div class="row-fluid">
-        <div class="span3">
+        <div class="container">
           <label ng-repeat="shift in selectOptions.shifts" for="{{shift}}">{{shift}}
-            <div class="span3">
+            <div class="radio">
               <input type="radio" ng-model="selectOptions.selected.shift" ng-value="shift" name="shift">
             </div>
-          </div>
+            </div>
         </label>
-      </div>
     </div>
 
       <!-- Vehicle -->
-    <div class="container">
+    <div class="container-fluid">
       <label for="vehicle">Which VEHICLE would you like to lease?</label>
-      <div>
+      <div class="container">
         <label ng-repeat="vehicle in selectOptions.vehicles" for="{{vehicle}}">{{vehicle}}
-          <input type="radio" ng-model="selectOptions.selected.vehicle" ng-value="vehicle" name="vehicle">
+          <div class="radio">
+            <input type="radio" ng-model="selectOptions.selected.vehicle" ng-value="vehicle" name="vehicle">
+          </div>
+          </div>
         </label>
-      </div>
     </div>
 
       <!-- Agency -->
     <div class="container">
       <label for="agency">Which AGENCY do you plan to work with?</label>
-      <div>
+      <div class="container">
         <label ng-repeat="agency in selectOptions.agencies" for="{{agency}}">{{agency}}
+          <div class="radio">
           <input type="radio" ng-model="selectOptions.selected.agency" ng-value="agency" name="agency">
-        </label>
-      </div>
+          </div>
+        </div>
+      </label>
     </div>
 
       <!-- Region -->
     <div class="container">
       <label for="region">Which REGION do you plan to work in?</label>
-      <div>
+      <div class="container">
         <label ng-repeat="region in selectOptions.regions" for="{{region}}">{{region}}
+          <div class="radio">
           <input type="radio" ng-model="selectOptions.selected.region" ng-value="region" name="region">
-        </label>
-      </div>
+          </div>
+        </div>
+      </label>
     </div>
-
-    <div>
-        <input type="submit" value="Enter" class="button">
-    </div>
-    <div>{{estimate}}</div>
-  <!-- </div> -->
-</form>
+  </form>
+</div>
