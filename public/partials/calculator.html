@@ -1,97 +1,97 @@
 <div class="container">
-        <span class="header">
+    <span class="header">
     <h1><strong>What's Your Rate?</strong></h1>
     <h3 ng-controller="calcController" ng-model="estimate" class="floating-menu">You could earn {{'$' + estimate + ' per hour!'}}</h3>
   </span>
-  <form ng-controller="calcController" method="post" action="/estimate">
-    <!-- Insurance -->
-    <div class="container">
-      <label for="insurance">Estimate your MONTHLY INSURANCE costs:</label>
-      <div class="vals">${{values.insurance}}</div>
-      <input type="text" id="insurance" readonly style="border:0; color:#f6931f; font-weight:bold;">
-      <div id="insurance-slider">
-        <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.insurance" translate="currencyFormatting"></slider>
-      </div>
-    </div>
-
-      <!-- Lease -->
-    <div class="container">
-      <label for="lease">Estimate your MONTHLY LEASE costs:</label>
-      <div>${{values.lease}}</div>
-      <input type="text" id="lease" readonly style="border:0; color:#f6931f; font-weight:bold;">
-      <div id="lease-slider">
-        <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.lease" translate="currencyFormatting"></slider>
-      </div>
-    </div>
-
-      <!-- Hours-drive -->
-    <div class="container">
-      <label for="hours-drive">Estimate the number of HOURS you plan to DRIVE per week:</label>
-      <div>{{values.hoursDrive}} hours/week</div>
-      <input type="text" id="hours-drive" readonly style="border:0; color:#f6931f; font-weight:bold;">
-      <div id="hours-drive-slider">
-        <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursDrive"></slider>
-      </div>
-    </div>
-
-      <!-- Mileage/gas -->
-    <div class="container">
-      <label for="mileage">Estimated weekly GAS cost (based on estimated drive time):</label>
-      <div>${{values.mileage}} gas/week</div>
-      <input type="text" id="mileage" readonly style="border:0; color:#f6931f; font-weight:bold;">
-      <div id="mileage-slider">
-        <slider floor="0" ceiling="270" values="135" step="50" precision="2" ng-model="values.mileage" translate="currencyFormatting"></slider>
-      </div>
-    </div>
-
-      <!-- Hours-task -->
-    <div class="container">
-      <label for="hours-task">Enter the number of HOURS you plan to spend on TASKS per week:</label>
-      <div>{{values.hoursTask}} hours/week</div>
-      <input type="text" id="hours-task" readonly style="border:0; color:#f6931f; font-weight:bold;">
-      <div id="hours-task-slider">
-        <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursTask"></slider>
-      </div>
-  </div>
-
-      <!-- Shift -->
-    <div class="container=">
-      <label for="shift">Which SHIFT will you typically work?</label>
-        <div class="radio inline" ng-repeat="shift in selectOptions.shifts">
-            <input type="radio" ng-model="selectOptions.selected.shift" ng-value="shift" name="shift">
-          <label class="radio inline" for="{{shift}}">{{shift}}
+    <form ng-controller="calcController" method="post" action="/estimate">
+        <!-- Insurance -->
+        <div class="container">
+            <label for="insurance">Estimate your MONTHLY INSURANCE costs:</label>
+            <div class="vals">${{values.insurance}}</div>
+            <input type="text" id="insurance" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <div id="insurance-slider">
+                <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.insurance" translate="currencyFormatting"></slider>
             </div>
-        </label>
-    </div>
-
-      <!-- Vehicle -->
-    <div class="container">
-      <label for="vehicle">Which VEHICLE would you like to lease?</label>
-      <div class="radio inline" ng-repeat="vehicle in selectOptions.vehicles">
-          <input type="radio" ng-model="selectOptions.selected.vehicle" ng-value="vehicle" name="vehicle">
-        <label class="radio inline" for="{{vehicle}}">{{vehicle}}
-          </div>
-        </label>
-    </div>
-
-      <!-- Agency -->
-    <div class="container">
-      <label for="agency">Which AGENCY do you plan to work with?</label>
-      <div class="radio inline" ng-repeat="agency in selectOptions.agencies">
-         <input type="radio" ng-model="selectOptions.selected.agency" ng-value="agency" name="agency">
-        <label class="radio inline" for="{{agency}}">{{agency}}
-          </label>
         </div>
-    </div>
 
-      <!-- Region -->
-    <div class="container">
-      <label for="region">Which REGION do you plan to work in?</label>
-      <div class="radio inline" ng-repeat="region in selectOptions.regions" >
-          <input type="radio" ng-value="region" name="region">
-          <label class="radio inline" ng-model="selectOptions.selected.region" for="{{region}}">{{region}}
-        </label>
-      </div>
-    </div>
-  </form>
+        <!-- Lease -->
+        <div class="container">
+            <label for="lease">Estimate your MONTHLY LEASE costs:</label>
+            <div>${{values.lease}}</div>
+            <input type="text" id="lease" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <div id="lease-slider">
+                <slider floor="0" ceiling="250" values="125" step="50" precision="2" ng-model="values.lease" translate="currencyFormatting"></slider>
+            </div>
+        </div>
+
+        <!-- Hours-drive -->
+        <div class="container">
+            <label for="hours-drive">Estimate the number of HOURS you plan to DRIVE per week:</label>
+            <div>{{values.hoursDrive}} hours/week</div>
+            <input type="text" id="hours-drive" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <div id="hours-drive-slider">
+                <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursDrive"></slider>
+            </div>
+        </div>
+
+        <!-- Mileage/gas -->
+        <div class="container">
+            <label for="mileage">Estimated weekly GAS cost (based on estimated drive time):</label>
+            <div>${{values.mileage}} gas/week</div>
+            <input type="text" id="mileage" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <div id="mileage-slider">
+                <slider floor="0" ceiling="270" values="135" step="50" precision="2" ng-model="values.mileage" translate="currencyFormatting"></slider>
+            </div>
+        </div>
+
+        <!-- Hours-task -->
+        <div class="container">
+            <label for="hours-task">Enter the number of HOURS you plan to spend on TASKS per week:</label>
+            <div>{{values.hoursTask}} hours/week</div>
+            <input type="text" id="hours-task" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <div id="hours-task-slider">
+                <slider floor="0" ceiling="60" values="30" step="10" precision="2" ng-model="values.hoursTask"></slider>
+            </div>
+        </div>
+
+        <!-- Shift -->
+        <div class="container=">
+            <label for="shift">Which SHIFT will you typically work?</label>
+            <div class="radio inline" ng-repeat="shift in selectOptions.shifts">
+                <input type="radio" ng-model="selectOptions.selected.shift" ng-value="shift" name="shift">
+                <label class="radio inline" for="{{shift}}">{{shift}}
+                </label>
+            </div>
+        </div>
+
+        <!-- Vehicle -->
+        <div class="container">
+            <label for="vehicle">Which VEHICLE would you like to lease?</label>
+            <div class="radio inline" ng-repeat="vehicle in selectOptions.vehicles">
+                <input type="radio" ng-model="selectOptions.selected.vehicle" ng-value="vehicle" name="vehicle">
+                <label class="radio inline" for="{{vehicle}}">{{vehicle}}
+                </label>
+            </div>
+        </div>
+
+        <!-- Agency -->
+        <div class="container">
+            <label for="agency">Which AGENCY do you plan to work with?</label>
+            <div class="radio inline" ng-repeat="agency in selectOptions.agencies">
+                <input type="radio" ng-model="selectOptions.selected.agency" ng-value="agency" name="agency">
+                <label class="radio inline" for="{{agency}}">{{agency}}
+                </label>
+            </div>
+        </div>
+
+        <!-- Region -->
+        <div class="container">
+            <label for="region">Which REGION do you plan to work in?</label>
+            <div class="radio inline" ng-repeat="region in selectOptions.regions">
+                <input type="radio" ng-value="region" name="region">
+                <label class="radio inline" ng-model="selectOptions.selected.region" for="{{region}}">{{region}}
+                </label>
+            </div>
+        </div>
+    </form>
 </div>
