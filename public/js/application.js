@@ -118,6 +118,11 @@
        $scope.$watchCollection("values", function(newVal, oldVal, scope) {
            scope.values.estimate = addVals();
        })
+
+      $scope.$watchCollection("selectOptions.selected", function(newVal, oldVal, scope) {
+           scope.values.estimate = addVals();
+           console.log(scope.values.shift)
+       })
       // $scope.changeVal = function() {
       //  // $scope.estimate = addVals();
       //   console.log('hi')
