@@ -55,7 +55,7 @@
         <div class="container=">
             <label for="shift">Which SHIFT will you typically work?</label>
             <div class="radio inline" ng-repeat="shift in selectOptions.shifts">
-                <input type="radio" ng-model="selectOptions.selected.shift" ng-value="shift" name="shift">
+                <input type="radio" ng-model="values.selectedShift" ng-value="shift" name="shift">
                 <label class="radio inline" for="{{shift}}">{{shift}}
                 </label>
             </div>
@@ -65,7 +65,7 @@
         <div class="container">
             <label for="vehicle">Which VEHICLE would you like to lease?</label>
             <div class="radio inline" ng-repeat="vehicle in selectOptions.vehicles">
-                <input type="radio" ng-model="selectOptions.selected.vehicle" ng-value="vehicle" name="vehicle">
+                <input type="radio" ng-model="values.selectedVehicle" ng-value="vehicle" name="vehicle">
                 <label class="radio inline" for="{{vehicle}}">{{vehicle}}
                 </label>
             </div>
@@ -75,7 +75,7 @@
         <div class="container">
             <label for="agency">Which AGENCY do you plan to work with?</label>
             <div class="radio inline" ng-repeat="agency in selectOptions.agencies">
-                <input type="radio" ng-model="selectOptions.selected.agency" ng-value="agency" name="agency">
+                <input type="radio" ng-model="values.selectedAgency" ng-value="agency" name="agency">
                 <label class="radio inline" for="{{agency}}">{{agency}}
                 </label>
             </div>
@@ -86,7 +86,7 @@
             <label for="region">Which REGION do you plan to work in?</label>
             <div class="radio inline" ng-repeat="region in selectOptions.regions">
                 <input type="radio" ng-value="region" name="region">
-                <label class="radio inline" ng-model="selectOptions.selected.region" for="{{region}}">{{region}}
+                <label class="radio inline" ng-model="values.selectedRegion" for="{{region}}">{{region}}
                 </label>
             </div>
         </div>

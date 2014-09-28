@@ -24,6 +24,10 @@
            vehicle: 1,
            agency: 40,
            region: 1.5,
+           selectedShift: 'Weekday',
+           selectedVehicle: 'Standard',
+           selectedAgency: 'Uber',
+           selectedRegion: 'San Francisco'
        };
 
        $scope.selectOptions = {
@@ -46,48 +50,52 @@
 
        // Set relative values of shifts
        var shiftFxn = function() {
-           if ($scope.selectOptions.selected.shift === "Weeknight") {
+          var selectedShift = $scope.values.selectedShift;
+           if (selectedShift === "Weeknight") {
                return 2
-           } else if ($scope.selectOptions.selected.shift === "Weekend") {
+           } else if (selectedShift === "Weekend") {
                return 1.5
-           } else if ($scope.selectOptions.selected.shift === "Weekday") {
+           } else if (selectedShift === "Weekday") {
                return 1
            }
        };
 
        // Set relative values of vehicles
        var vehicleFxn = function() {
-           if ($scope.selectOptions.selected.vehicle === "Premium") {
+          var selectedVehicle = $scope.values.selectedVehicle;
+           if (selectedVehicle === "Premium") {
                return 2
-           } else if ($scope.selectOptions.selected.vehicle === "Mid-range") {
+           } else if (selectedVehicle === "Mid-range") {
                return 1.5
-           } else if ($scope.selectOptions.selected.vehicle === "Standard") {
+           } else if (selectedVehicle === "Standard") {
                return 1
            }
        };
 
        // Set relative values of region
        var regionFxn = function() {
-           if ($scope.selectOptions.selected.region === "San Francisco") {
+          var selectedRegion = $scope.values.selectedRegion;
+           if (selectedRegion === "San Francisco") {
                return 1.5
-           } else if ($scope.selectOptions.selected.region === "East Bay") {
+           } else if (selectedRegion === "East Bay") {
                return 1
-           } else if ($scope.selectOptions.selected.region === "South Bay") {
+           } else if (selectedRegion === "South Bay") {
                return 1.25
-           } else if ($scope.selectOptions.selected.region === "Peninsula") {
+           } else if (selectedRegion === "Peninsula") {
                return 1.25
            }
        };
 
        // Assign agency hourly rates
        var agencyFxn = function() {
-           if ($scope.selectOptions.selected.agency === "Uber") {
+          var selectedAgency = $scope.values.selectedAgency;
+           if (selectedAgency === "Uber") {
                return 40
-           } else if ($scope.selectOptions.selected.region === "Lyft") {
+           } else if (selectedAgency === "Lyft") {
                return 35
-           } else if ($scope.selectOptions.selected.region === "Spoonrocket") {
+           } else if (selectedAgency === "Spoonrocket") {
                return 25
-           } else if ($scope.selectOptions.selected.region === "TaskRabbit") {
+           } else if (selectedAgency === "TaskRabbit") {
                return 30
            }
        };
@@ -106,27 +114,27 @@
            var hoursAnnual = (($scope.values.hoursDrive * $scope.values.agency) + ($scope.values.hoursTask * $scope.values.agency) ) * 52
 
            // Weight estimate with other options
-           // var multipliers = hoursAnnual * $scope.values.shift * $scope.values.vehicle * $scope.values.region
+           var multipliers = hoursAnnual * $scope.values.shift * $scope.values.vehicle * $scope.values.region
 
            // Calculate the rate estimate
            var rate = ((hoursAnnual - costsAnnual)/(52 * 40))
            console.log(rate)
+           console.log((multipliers - costsAnnual)/(52*40))
+           console.log("SHIFT From AddVals: " + $scope.values.shift)
            return Math.floor(rate)
        };
 
        // Assign estimate to the scope by watching changes to the $scope.values object
        $scope.$watchCollection("values", function(newVal, oldVal, scope) {
+            console.log(scope.values.shift)
            scope.values.estimate = addVals();
        })
 
-      $scope.$watchCollection("selectOptions.selected", function(newVal, oldVal, scope) {
-           scope.values.estimate = addVals();
-           console.log(scope.values.shift)
-       })
-      // $scope.changeVal = function() {
-      //  // $scope.estimate = addVals();
-      //   console.log('hi')
-      // }
+      // $scope.$watchCollection("selectOptions.selected", function(newVal, oldVal, scope) {
+      //      console.log("SHIFT: " + scope.values.shift)
+
+      //      scope.values.estimate = addVals();
+      //  })
 
        // Formatting for scale bar
        $scope.currencyFormatting = function(value) {
