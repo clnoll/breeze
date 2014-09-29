@@ -30,7 +30,7 @@
        };
 
        $scope.selectOptions = {
-           shifts: ['Weekday', 'Weekend', 'Weeknight'],
+           shifts: ['Weekday', 'Weeknight', 'Weekend'],
            vehicles: ['Standard', 'Mid-range', 'Premium'],
            agencies: ['Uber', 'Lyft', 'SpoonRocket', 'TaskRabbit'],
            regions: ['San Francisco', 'East Bay', 'South Bay', 'Peninsula']
@@ -45,9 +45,9 @@
        var shiftFxn = function() {
           var selectedShift = $scope.values.selectedShift;
            if (selectedShift === "Weeknight") {
-               return 2
+               return 1.25
            } else if (selectedShift === "Weekend") {
-               return 1.5
+               return 1.1
            } else if (selectedShift === "Weekday") {
                return 1
            }
@@ -57,9 +57,9 @@
        var vehicleFxn = function() {
           var selectedVehicle = $scope.values.selectedVehicle;
            if (selectedVehicle === "Premium") {
-               return 1.5
-           } else if (selectedVehicle === "Mid-range") {
                return 1.25
+           } else if (selectedVehicle === "Mid-range") {
+               return 1.1
            } else if (selectedVehicle === "Standard") {
                return 1
            }
