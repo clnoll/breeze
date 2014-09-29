@@ -25,7 +25,7 @@
         <hr>
         <!-- Hours-drive -->
         <div class="container">
-            <label for="hours-drive">Estimate the number of HOURS you plan to DRIVE or spend on TASKS per week:</label>
+            <label for="hours-drive">Estimate the HOURS per week you plan to DRIVE or spend driving to tasks:</label>
             <div class="vals">{{values.hours}} hours/week</div>
             <div id="hours-drive-slider">
                 <slider floor="0" ceiling="80" ng-value="40" step="5" ng-model="values.hours"></slider>
@@ -33,7 +33,7 @@
         </div>
         <!-- Mileage/gas -->
         <div class="container">
-            <label for="mileage">Estimated weekly GAS cost (based on estimated drive time in Breeze's hybrid vehicles):</label>
+            <label for="mileage">Estimated weekly GAS cost (based on driving time in Breeze's hybrid vehicles):</label>
             <div class="vals">${{values.mileage}} gas/week</div>
             <div id="mileage-slider">
                 <slider floor="0" ceiling="270" ng-value="135" step="5" ng-model="values.mileage" translate="currencyFormatting"></slider>
