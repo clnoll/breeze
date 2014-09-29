@@ -1,7 +1,7 @@
 <div ng-controller="calcController" class="container" id="calc">
     <span class="header">
     <h2><strong>What's Your Rate?</strong></h2>
-    <h3  ng-model="$estimate" class="floating-menu">You could earn ${{values.estimate}} per hour!</h3>
+    <h3  ng-model="$estimate" class="floating-menu">You could earn <strong>${{values.estimate}}</strong> per hour!</h3>
   </span>
   <hr>
     <form method="post" action="/estimate">
@@ -28,16 +28,15 @@
             <label for="hours-drive">Estimate the number of HOURS you plan to DRIVE per week:</label>
             <div class="vals">{{values.hoursDrive}} hours/week</div>
             <div id="hours-drive-slider">
-                <slider floor="0" ceiling="60" ng-value="30" step="10" ng-model="values.hoursDrive"></slider>
+                <slider floor="0" ceiling="60" ng-value="30" step="5" ng-model="values.hoursDrive"></slider>
             </div>
         </div>
-        <hr>
         <!-- Mileage/gas -->
         <div class="container">
-            <label for="mileage">Estimated weekly GAS cost (based on estimated drive time):</label>
+            <label for="mileage">Estimated weekly GAS cost (based on estimated drive time in Breeze's hybrid vehicles):</label>
             <div class="vals">${{values.mileage}} gas/week</div>
             <div id="mileage-slider">
-                <slider floor="0" ceiling="270" ng-value="135" step="25" ng-model="values.mileage" translate="currencyFormatting"></slider>
+                <slider floor="0" ceiling="200" ng-value="100" step="5" ng-model="values.mileage" translate="currencyFormatting"></slider>
             </div>
         </div>
         <hr>
@@ -46,7 +45,7 @@
             <label for="hours-task">Enter the number of HOURS you plan to spend on TASKS per week:</label>
             <div class="vals">{{values.hoursTask}} hours/week</div>
             <div id="hours-task-slider">
-                <slider floor="0" ceiling="60" ng-value="30" step="10" ng-model="values.hoursTask"></slider>
+                <slider floor="0" ceiling="60" ng-value="30" step="5" ng-model="values.hoursTask"></slider>
             </div>
         </div>
         <hr>
