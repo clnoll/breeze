@@ -25,10 +25,10 @@
         <hr>
         <!-- Hours-drive -->
         <div class="container">
-            <label for="hours-drive">Estimate the number of HOURS you plan to DRIVE per week:</label>
-            <div class="vals">{{values.hoursDrive}} hours/week</div>
+            <label for="hours-drive">Estimate the number of HOURS you plan to DRIVE or spend on TASKS per week:</label>
+            <div class="vals">{{values.hours}} hours/week</div>
             <div id="hours-drive-slider">
-                <slider floor="0" ceiling="60" ng-value="30" step="5" ng-model="values.hoursDrive"></slider>
+                <slider floor="0" ceiling="80" ng-value="40" step="5" ng-model="values.hours"></slider>
             </div>
         </div>
         <!-- Mileage/gas -->
@@ -36,16 +36,7 @@
             <label for="mileage">Estimated weekly GAS cost (based on estimated drive time in Breeze's hybrid vehicles):</label>
             <div class="vals">${{values.mileage}} gas/week</div>
             <div id="mileage-slider">
-                <slider floor="0" ceiling="200" ng-value="100" step="5" ng-model="values.mileage" translate="currencyFormatting"></slider>
-            </div>
-        </div>
-        <hr>
-        <!-- Hours-task -->
-        <div class="container">
-            <label for="hours-task">Enter the number of HOURS you plan to spend on TASKS per week:</label>
-            <div class="vals">{{values.hoursTask}} hours/week</div>
-            <div id="hours-task-slider">
-                <slider floor="0" ceiling="60" ng-value="30" step="5" ng-model="values.hoursTask"></slider>
+                <slider floor="0" ceiling="270" ng-value="135" step="5" ng-model="values.mileage" translate="currencyFormatting"></slider>
             </div>
         </div>
         <hr>

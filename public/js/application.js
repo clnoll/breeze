@@ -17,8 +17,7 @@
            // Default values
            insurance: 125,
            lease: 125,
-           hoursDrive: 30,
-           hoursTask: 0,
+           hours: 40,
            mileage: 135,
            shift: 1,
            vehicle: 1,
@@ -31,7 +30,7 @@
        };
 
        $scope.selectOptions = {
-           shifts: ['Weeknight', 'Weekend', 'Weekday'],
+           shifts: ['Weekday', 'Weekend', 'Weeknight'],
            vehicles: ['Standard', 'Mid-range', 'Premium'],
            agencies: ['Uber', 'Lyft', 'SpoonRocket', 'TaskRabbit'],
            regions: ['San Francisco', 'East Bay', 'South Bay', 'Peninsula']
@@ -39,7 +38,7 @@
 
       // Calculate the weekly cost of gas based on estimated hours of driving per week.  Assumes average of 30 mph speed, 40 mpg for hybrids, $4.50/gallon gas
        var mileageFxn = function() {
-           return Math.floor((($scope.values.hoursDrive * 30) / 40) * 4.5)
+           return Math.floor((($scope.values.hours * 30) / 40) * 4.5)
        };
 
        // Set relative values of shifts
@@ -70,13 +69,13 @@
        var regionFxn = function() {
           var selectedRegion = $scope.values.selectedRegion;
            if (selectedRegion === "San Francisco") {
-               return 1.5
+               return 1.25
            } else if (selectedRegion === "East Bay") {
                return 1
            } else if (selectedRegion === "South Bay") {
-               return 1.25
+               return 1.1
            } else if (selectedRegion === "Peninsula") {
-               return 1.25
+               return 1.1
            }
        };
 
@@ -105,7 +104,7 @@
            var costsAnnual = ($scope.values.insurance * 12) + ($scope.values.lease * 12) + ($scope.values.mileage * 52)
 
            // Calculate hourly earnings, extrapolated to one year
-           var hoursAnnual = (($scope.values.hoursDrive * $scope.values.agency) + ($scope.values.hoursTask * $scope.values.agency) ) * 52
+           var hoursAnnual = ($scope.values.hours * $scope.values.agency) * 52
 
            // Weight estimate with other options
            var multipliers = hoursAnnual * $scope.values.shift * $scope.values.vehicle * $scope.values.region
