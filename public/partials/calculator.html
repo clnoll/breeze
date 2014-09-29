@@ -85,8 +85,8 @@
         <div class="container">
             <label for="region">Which REGION do you plan to work in?</label>
             <div class="radio inline" ng-repeat="region in selectOptions.regions">
-                <input type="radio" ng-value="region" name="region">
-                <label class="radio inline" ng-model="values.selectedRegion" for="{{region}}">{{region}}
+                <input type="radio" ng-model="values.selectedRegion" ng-value="region" name="region">
+                <label class="radio inline" for="{{region}}">{{region}}
                 </label>
             </div>
         </div>

@@ -27,20 +27,14 @@
            selectedShift: 'Weekday',
            selectedVehicle: 'Standard',
            selectedAgency: 'Uber',
-           selectedRegion: 'San Francisco'
+           selectedRegion: 'SanFrancisco'
        };
 
        $scope.selectOptions = {
            shifts: ['Weeknight', 'Weekend', 'Weekday'],
            vehicles: ['Standard', 'Mid-range', 'Premium'],
            agencies: ['Uber', 'Lyft', 'SpoonRocket', 'TaskRabbit'],
-           regions: ['San Francisco', 'East Bay', 'South Bay', 'Peninsula'],
-           selected: {
-               shift: 'Weekday',
-               vehicle: 'Standard',
-               agency: 'Uber',
-               region: 'San Francisco'
-           }
+           regions: ['SanFrancisco', 'EastBay', 'SouthBay', 'Peninsula']
        };
 
       // Calculate the weekly cost of gas based on estimated hours of driving per week.  Assumes average of 30 mph speed, 40 mpg for hybrids, $4.50/gallon gas
@@ -75,11 +69,11 @@
        // Set relative values of region
        var regionFxn = function() {
           var selectedRegion = $scope.values.selectedRegion;
-           if (selectedRegion === "San Francisco") {
+           if (selectedRegion === "SanFrancisco") {
                return 1.5
-           } else if (selectedRegion === "East Bay") {
+           } else if (selectedRegion === "EastBay") {
                return 1
-           } else if (selectedRegion === "South Bay") {
+           } else if (selectedRegion === "SouthBay") {
                return 1.25
            } else if (selectedRegion === "Peninsula") {
                return 1.25
@@ -93,7 +87,7 @@
                return 40
            } else if (selectedAgency === "Lyft") {
                return 35
-           } else if (selectedAgency === "Spoonrocket") {
+           } else if (selectedAgency === "SpoonRocket") {
                return 25
            } else if (selectedAgency === "TaskRabbit") {
                return 30
@@ -117,24 +111,20 @@
            var multipliers = hoursAnnual * $scope.values.shift * $scope.values.vehicle * $scope.values.region
 
            // Calculate the rate estimate
-           var rate = ((hoursAnnual - costsAnnual)/(52 * 40))
+           var rate = ((multipliers - costsAnnual)/(52 * 40))
            console.log(rate)
            console.log((multipliers - costsAnnual)/(52*40))
            console.log("SHIFT From AddVals: " + $scope.values.shift)
+           console.log("REGION From AddVals: " + $scope.values.region)
            return Math.floor(rate)
        };
 
        // Assign estimate to the scope by watching changes to the $scope.values object
        $scope.$watchCollection("values", function(newVal, oldVal, scope) {
-            console.log(scope.values.shift)
+            console.log("SHIFT" + scope.values.shift);
+            console.log("REGION" + scope.values.region);
            scope.values.estimate = addVals();
        })
-
-      // $scope.$watchCollection("selectOptions.selected", function(newVal, oldVal, scope) {
-      //      console.log("SHIFT: " + scope.values.shift)
-
-      //      scope.values.estimate = addVals();
-      //  })
 
        // Formatting for scale bar
        $scope.currencyFormatting = function(value) {
