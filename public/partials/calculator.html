@@ -8,7 +8,6 @@
         <!-- Insurance -->
         <div class="container">
             <label for="insurance">Estimate your MONTHLY INSURANCE costs:</label>
-            <input type="text" id="insurance" readonly style="border:0; color:#f6931f; font-weight:bold;">
             <div class="vals">${{values.insurance}}</div>
             <div id="insurance-slider">
                 <slider floor="0" ceiling="250" value="125" step="25" ng-model="values.insurance" translate="currencyFormatting"></slider>
@@ -52,7 +51,7 @@
         </div>
         <hr>
         <!-- Shift -->
-        <div class="container=">
+        <div class="container">
             <label for="shift">Which SHIFT will you typically work?</label>
             <div class="radio inline" ng-repeat="shift in selectOptions.shifts">
                 <input type="radio" ng-model="values.selectedShift" ng-value="shift" name="shift">
