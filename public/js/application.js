@@ -45,11 +45,11 @@
        var shiftFxn = function() {
           var selectedShift = $scope.values.selectedShift;
            if (selectedShift === "Weeknight") {
-               return 1.25
+               return 0.25
            } else if (selectedShift === "Weekend") {
-               return 1.1
+               return 0.1
            } else if (selectedShift === "Weekday") {
-               return 1
+               return 0
            }
        };
 
@@ -57,11 +57,11 @@
        var vehicleFxn = function() {
           var selectedVehicle = $scope.values.selectedVehicle;
            if (selectedVehicle === "Premium") {
-               return 1.25
+               return 0.25
            } else if (selectedVehicle === "Mid-range") {
-               return 1.1
+               return 0.1
            } else if (selectedVehicle === "Standard") {
-               return 1
+               return 0
            }
        };
 
@@ -69,13 +69,13 @@
        var regionFxn = function() {
           var selectedRegion = $scope.values.selectedRegion;
            if (selectedRegion === "San Francisco") {
-               return 1.25
+               return 0.25
            } else if (selectedRegion === "East Bay") {
-               return 1
+               return 0
            } else if (selectedRegion === "South Bay") {
-               return 1.1
+               return 0.1
            } else if (selectedRegion === "Peninsula") {
-               return 1.1
+               return 0.1
            }
        };
 
@@ -107,10 +107,10 @@
            var hoursAnnual = ($scope.values.hours * $scope.values.agency) * 52
 
            // Weight estimate with other options
-           var multipliers = hoursAnnual * $scope.values.shift * $scope.values.vehicle * $scope.values.region
+           var multipliers = hoursAnnual + (hoursAnnual * $scope.values.shift) + (hoursAnnual * $scope.values.vehicle) + (hoursAnnual * $scope.values.region)
 
            // Calculate the rate estimate
-           var rate = ((multipliers - costsAnnual)/(52 * 40))
+           var rate = ((multipliers - costsAnnual)/(52 * $scope.values.hours))
            return Math.floor(rate)
        };
 
