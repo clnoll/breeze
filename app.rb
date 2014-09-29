@@ -1,10 +1,10 @@
 require 'sinatra'
 require_relative 'lib/breeze.rb'
 
-# class Breeze::App < Sinatra::Application
-#   configure :development do |c|
-#     c.set :bind, '10.10.10.10'
-#   end
+class Breeze::App < Sinatra::Application
+  configure :development do |c|
+    c.set :bind, '10.10.10.10'
+  end
 
   set :bind, '10.10.10.10'
 
@@ -21,4 +21,4 @@ require_relative 'lib/breeze.rb'
   get '/' do
     redirect '/temps'
   end
-# end
+end
